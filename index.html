@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Workout Pro</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- =======================
+منوی کناری
+======================= -->
+
+<aside class="sidebar">
+
+<h2>🏋️ Workout Pro</h2>
+
+<button class="menu active" data-page="home">
+🏠 خانه
+</button>
+
+<button class="menu" data-page="today">
+💪 تمرین امروز
+</button>
+
+<button class="menu" data-page="week">
+📅 برنامه هفتگی
+</button>
+
+<button class="menu" data-page="progress">
+📈 پیشرفت
+</button>
+
+<button class="menu" data-page="settings">
+⚙️ تنظیمات
+</button>
+
+</aside>
+
+<!-- =======================
+محتوا
+======================= -->
+
+<main>
+
+<header class="top">
+
+<div>
+
+<h2 id="clock">
+00:00:00
+</h2>
+
+<p id="date">
+تاریخ
+</p>
+
+</div>
+
+<div>
+
+<h2 id="hello">
+سلام 👋
+</h2>
+
+</div>
+
+</header>
+
+<!-- =======================
+خانه
+======================= -->
+
+<section id="home" class="page">
+
+<div class="card">
+
+<h1>
+به Workout Pro خوش آمدی 💪
+</h1>
+
+<p>
+هدف:
+افزایش قدرت، تناسب اندام و افزایش قد
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>
+اطلاعات
+</h2>
+
+<p>سن: ۱۴ سال</p>
+<p>قد: ۱۶۲ سانتی‌متر</p>
+<p>وزن: ۵۱ کیلوگرم</p>
+
+</div>
+
+<div class="card">
+
+<h2>
+پیشرفت امروز
+</h2>
+
+<div class="progress">
+
+<div id="progressBar"></div>
+
+</div>
+
+<h3 id="progressText">
+0%
+</h3>
+
+</div>
+
+<div class="card">
+
+<h2>
+آمار امروز
+</h2>
+
+<p>
+✅ انجام شده:
+<span id="doneCount">0</span>
+</p>
+
+<p>
+❌ انجام نشده:
+<span id="notDoneCount">0</span>
+</p>
+
+<p>
+⏳ باقی مانده:
+<span id="remainCount">0</span>
+</p>
+
+</div>
+
+</section>
+
+<!-- =======================
+تمرین امروز
+======================= -->
+
+<section id="today" class="page hidden">
+
+<h1>
+تمرین امروز
+</h1>
+
+<div id="todayContainer">
+
+</div>
+
+</section>
+
+<!-- =======================
+برنامه هفتگی
+======================= -->
+
+<section id="week" class="page hidden">
+
+<h1>
+برنامه هفتگی
+</h1>
+
+<div class="days">
+
+<button onclick="loadDay('شنبه')">شنبه</button>
+<button onclick="loadDay('یکشنبه')">یکشنبه</button>
+<button onclick="loadDay('دوشنبه')">دوشنبه</button>
+<button onclick="loadDay('سه‌شنبه')">سه‌شنبه</button>
+<button onclick="loadDay('چهارشنبه')">چهارشنبه</button>
+<button onclick="loadDay('پنجشنبه')">پنجشنبه</button>
+<button onclick="loadDay('جمعه')">جمعه</button>
+
+</div>
+
+<div id="exerciseContainer">
+
+<div class="card">
+
+یک روز را انتخاب کن 📅
+
+</div>
+
+</div>
+
+</section>
+<!-- =======================
+پیشرفت
+======================= -->
+
+<section id="progress" class="page hidden">
+
+<h1>
+آمار تمرین‌ها
+</h1>
+
+<div class="card">
+
+<h2>
+تمرین‌های انجام شده
+</h2>
+
+<h1 id="counter">
+0
+</h1>
+
+</div>
+
+<div class="card">
+
+<h2>
+تمرین‌های انجام نشده
+</h2>
+
+<h1 id="failedCounter">
+0
+</h1>
+
+</div>
+
+<div class="card">
+
+<h2>
+درصد موفقیت امروز
+</h2>
+
+<div class="progress">
+
+<div id="progressBar2"></div>
+
+</div>
+
+<h3 id="progressPercent">
+0%
+</h3>
+
+</div>
+
+<div class="card">
+
+<h2>
+آخرین دلیل انجام نشدن
+</h2>
+
+<p id="lastReason">
+هنوز موردی ثبت نشده است.
+</p>
+
+</div>
+
+</section>
+
+<!-- =======================
+تنظیمات
+======================= -->
+
+<section id="settings" class="page hidden">
+
+<h1>
+تنظیمات
+</h1>
+
+<div class="card">
+
+<button id="darkBtn">
+🌙 تغییر حالت
+</button>
+
+</div>
+
+<div class="card">
+
+<button id="resetBtn">
+🗑 پاک کردن اطلاعات
+</button>
+
+</div>
+
+</section>
+
+<!-- =======================
+پنجره ثبت دلیل انجام نشدن
+======================= -->
+
+<div id="reasonModal" class="modal hidden">
+
+<div class="modal-box">
+
+<h2>
+چرا این تمرین انجام نشد؟
+</h2>
+
+<select id="reasonSelect">
+
+<option value="">
+انتخاب کنید
+</option>
+
+<option value="خسته بودم">
+😴 خسته بودم
+</option>
+
+<option value="وقت نداشتم">
+⏰ وقت نداشتم
+</option>
+
+<option value="سخت بود">
+💪 سخت بود
+</option>
+
+<option value="بدنم درد می‌کرد">
+🤕 بدنم درد می‌کرد
+</option>
+
+<option value="دلیل دیگر">
+✍️ دلیل دیگر
+</option>
+
+</select>
+
+<textarea
+id="customReason"
+placeholder="اگر دلیل دیگری داری اینجا بنویس..."
+></textarea>
+
+<div class="modal-buttons">
+
+<button id="saveReason">
+💾 ذخیره
+</button>
+
+<button id="cancelReason">
+❌ انصراف
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
